@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+
+  dmk_db:
+    container_name: dmk_db
+    hostname: dmk_db
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - 50003:5432
+    env_file:
+      - .env
+    volumes:
+      - /mntpath:/var/lib/postgresql/data
+    networks:
+      - dmk_network
+  dmk_server:
+    container_name: dmk_server
+    hostname: dmk_server
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: docker/server.dockerfile
+    env_file:
+      - ./server/.env
+    ports:
+      - 50005:3000
+    depends_on:
+      - dmk_db
+    networks:
+      - dmk_network
+  dmk_client:
+    container_name: dmk_client
+    hostname: dmk_client
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: docker/client.dockerfile
+    env_file:
+      - ./client/.env
+    ports:
+      - 50004:80
+    depends_on:
+      - dmk_server
+    networks:
+      - dmk_network
+
+  dmk_nginx:
+    depends_on:
+      - dmk_server
+      - dmk_client
+    container_name: dmk_nginx
+    hostname: dmk_nginx
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/nginx.dockerfile
+    ports:
+      - 50006:80
+    networks:
+      - dmk_network
+
+networks:
+  dmk_network:
+
+  
+    
+    

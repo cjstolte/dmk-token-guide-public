@@ -1,5 +1,5 @@
 require('dotenv').config();
-const ORIGIN_URL = "dmk.cjstolte.com";
+const ORIGIN_URL = process.env.PUBLIC_URL;
 // const ORIGIN_URL =
 //     process.env.NODE_ENV === "development"
 //         ? "localhost:8080"
