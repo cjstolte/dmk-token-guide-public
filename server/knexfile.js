@@ -1,14 +1,14 @@
 // Update with your config settings.
-const { DB_DEV, DB_PROD } = require("./secrets");
+require('dotenv').config();
 
 module.exports = {
     development: {
         client: "pg",
         connection: {
-            host: DB_DEV.host,
-            user: DB_DEV.user,
-            password: DB_DEV.password,
-            database: DB_DEV.database,
+            host: process.env.DB_DEV_HOST,
+            user: process.env.DB_DEV_USER,
+            password: process.env.DB_DEV_PASSWORD,
+            database: process.env.DB_DEV_DB,
             charset: "utf8"
         },
         migrations: {
@@ -38,10 +38,10 @@ module.exports = {
     production: {
         client: "pg",
         connection: {
-            host: DB_PROD.host,
-            user: DB_PROD.user,
-            password: DB_PROD.password,
-            database: DB_PROD.database,
+            host: process.env.DB_PROD_HOST,
+            user: process.env.DB_PROD_USER,
+            password: process.env.DB_PROD_PASSWORD,
+            database: process.env.DB_PROD_DB,
             charset: "utf8"
         },
         pool: {

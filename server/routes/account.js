@@ -12,12 +12,11 @@ const {
 } = require("../models/account");
 const { knex } = require("../models/config");
 const TABLES = require("../data/tables");
-const { EMAIL } = require("../secrets");
 const getEmails = require("../emails");
-
+require('dotenv').config();
 const router = new Router();
 
-sgMail.setApiKey(EMAIL.API_KEY);
+sgMail.setApiKey(process.env.EMAIL_API_KEY);
 
 router.post("/login", async (req, res, next) => {
     try {

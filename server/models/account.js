@@ -1,11 +1,11 @@
 const { knex } = require("./config");
 const uuid = require("uuid/v4");
 const bcrypt = require("bcrypt");
-const HASH = require("../secrets");
 const TABLES = require("../data/tables");
+require('dotenv').config();
 
 const hash = (data) => {
-    const salt = bcrypt.genSaltSync(HASH.saltRounds);
+    const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(data, salt);
     return hash;
 };

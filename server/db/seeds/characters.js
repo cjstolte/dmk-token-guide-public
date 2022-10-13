@@ -1,7 +1,6 @@
 const { keyBy } = require("lodash");
 const faker = require("faker");
 const bcrypt = require("bcrypt");
-const HASH = require("../../secrets");
 const { hash } = require("../../models/account");
 
 const {
@@ -42,8 +41,10 @@ const EVENT = require("../../data/eventData");
 const TABLES = require("../../data/tables");
 const testUserData = require("../../data/testUserData");
 
+require('dotenv').config();
+
 const hashData = (data) => {
-    const salt = bcrypt.genSaltSync(HASH.saltRounds);
+    const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(data, salt);
     return hash;
 };

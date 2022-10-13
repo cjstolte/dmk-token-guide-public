@@ -11,7 +11,8 @@
         "event": "node db/scripts/storyline.js && node db/scripts/event.js",
         "tc": "node db/scripts/storyline.js && node db/scripts/updateTCInfo.js",
         "manual": "node db/scripts/manualUpdates.js",
-        "seed": "knex seed:run"
+        "seed": "knex seed:run",
+        "migrate": "knex migrate:latest"
     },
     "dependencies": {
         "@sendgrid/mail": "^7.7.0",
@@ -20,6 +21,7 @@
         "bookshelf-jsonapi-params": "^1.5.3",
         "cookie-parser": "~1.4.4",
         "debug": "~2.6.9",
+        "dotenv": "^16.0.3",
         "ejs": "~2.6.1",
         "express": "~4.16.1",
         "http-errors": "~1.6.3",
