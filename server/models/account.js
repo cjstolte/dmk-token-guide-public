@@ -5,7 +5,7 @@ const TABLES = require("../data/tables");
 require('dotenv').config();
 
 const hash = (data) => {
-    const salt = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(process.env.HASH_ROUNDS);
     const hash = bcrypt.hashSync(data, salt);
     return hash;
 };

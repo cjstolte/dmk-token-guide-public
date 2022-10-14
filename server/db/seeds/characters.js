@@ -44,7 +44,7 @@ const testUserData = require("../../data/testUserData");
 require('dotenv').config();
 
 const hashData = (data) => {
-    const salt = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(process.env.HASH_ROUNDS);
     const hash = bcrypt.hashSync(data, salt);
     return hash;
 };

@@ -10,7 +10,7 @@ import axios from "axios";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-axios.defaults.baseURL = 'http://localhost:50006';
+axios.defaults.baseURL = process.env.AXIOS_BASE_URL;
 
 ReactDOM.render(
     <Provider store={store}>
